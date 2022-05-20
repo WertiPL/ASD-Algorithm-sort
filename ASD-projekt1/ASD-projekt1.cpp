@@ -191,6 +191,7 @@ int main()
              for (int i = 0; i < dane; i++)
                  plik >> arrayrandom[i];
          }
+
          start = clock();
 
          heapSort(arrayrandom, dane);
@@ -211,14 +212,18 @@ int main()
          std::cout << "Sortowanie przez kopcowanie czas dla liczb losowych: " << std::fixed;
          std::cout << time_taken << std::setprecision(5); ;
          std::cout << " sec " << std::endl;
-         if (!plik.good())
+         //if (!plik.good())
+         //{
+         //    losuj();
+         //}
+         //else
+         //{
+         //    for (int i = 0; i < dane; i++)
+         //        plik >> arrayrandom[i];
+         //}
+         for (int i = 0; i < dane; i++)
          {
-             losuj();
-         }
-         else
-         {
-             for (int i = 0; i < dane; i++)
-                 plik >> arrayrandom[i];
+             std::cout << arrayrandom[i]<<"\t";
          }
      start = clock();
 
@@ -226,7 +231,10 @@ int main()
 
      end = clock();
 
-
+     //for (int i = 0; i < dane; i++)
+     //{
+     //    std::cout << arrayrandom[i] << "\t";
+     //}
 
      time_taken = double(end - start) / double(CLOCKS_PER_SEC);
      std::cout << "Bąbelkowe czas dla liczb losowych : " << std::fixed;
@@ -249,11 +257,8 @@ int main()
 
 
      end = clock();
-     if (arrayfinalto1[1500] == array1tofinal[1500])
-     {
-         std::cout << "Odwrotnie posortowane sa rowne posortowanym\n";
-     }
-     double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
+
+      time_taken = double(end - start) / double(CLOCKS_PER_SEC);
      std::cout << "Sortowanie Lomuto czas dla odwrotnie posortowanych: " << std::fixed;
      std::cout << time_taken << std::setprecision(5); ;
      std::cout << " s " << std::endl;
@@ -310,6 +315,10 @@ int main()
      {
          array1tofinal[i] = i;
      }
+     for (int i = 0; i < dane; i++)
+{
+    std::cout << array1tofinal[i] << "\t";
+}
      start = clock();
 
      quickSort(array1tofinal, 0, dane - 1);
@@ -317,7 +326,11 @@ int main()
 
 
      end = clock();
-    double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
+     for (int i = 0; i < dane; i++)
+     {
+         std::cout << array1tofinal[i] << "\t";
+     }
+     time_taken = double(end - start) / double(CLOCKS_PER_SEC);
      std::cout << "Sortowanie Lomuto czas dla liczb posortowanych: " << std::fixed;
      std::cout << time_taken << std::setprecision(5); ;
      std::cout << " s " << std::endl;
