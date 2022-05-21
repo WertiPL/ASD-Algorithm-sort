@@ -327,7 +327,7 @@ int main()
      std::cout << "Sortowanie przez scalanie czas dla liczb posortowanych: " << std::fixed;
      std::cout << time_taken << std::setprecision(5);
      std::cout << " s " << std::endl;
-
+        for (int i = 0; i < dane; i++)
      {
          array1tofinal[i] = i;
      }
