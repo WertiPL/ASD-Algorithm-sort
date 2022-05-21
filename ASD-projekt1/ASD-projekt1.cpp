@@ -1,4 +1,4 @@
-﻿// ASD-projekt1.cpp : Ten plik zawiera funkcję „main”. W nim rozpoczyna się i kończy wykonywanie programu.
+// ASD-projekt1.cpp : Ten plik zawiera funkcję „main”. W nim rozpoczyna się i kończy wykonywanie programu.
 //
 
 #include <iostream>
@@ -131,9 +131,7 @@ void sortowanie_przez_scalanie(int A[], int left, int right)
 int main()
 {
      int dane = 350000;
-    int arrayrandom[500000];
-    int array1tofinal[500000];
-    int arrayfinalto1[500000];
+    int array[500000];
 
     std::ifstream plik;
     plik.open("losoweliczby.txt", std::ios::in);
@@ -145,7 +143,7 @@ int main()
     else
     {
         for (int i = 0; i < dane; i++)
-            plik >> arrayrandom[i];
+            plik >> array[i];
     }
     std::cout << "Start";
         clock_t start, end;
@@ -153,7 +151,7 @@ int main()
         
      start = clock();
 
-     quickSort(arrayrandom, 0, dane-1);
+     quickSort(array, 0, dane-1);
 
      end = clock();
 
@@ -164,7 +162,7 @@ int main()
      else
      {
          for (int i = 0; i < dane; i++)
-             plik >> arrayrandom[i];
+             plik >> array[i];
      }
         double time_taken= double(end - start) / double(CLOCKS_PER_SEC);
          std::cout << "Sortowanie Lomuto czas dla liczb losowych: " << std::fixed;
@@ -172,7 +170,7 @@ int main()
          std::cout << " s " << std::endl;
          start = clock();
 
-         sortowanie_przez_scalanie(arrayrandom, 0, dane-1);
+         sortowanie_przez_scalanie(array, 0, dane-1);
 
          end = clock();
          time_taken = double(end - start) / double(CLOCKS_PER_SEC);
@@ -186,12 +184,12 @@ int main()
          else
          {
              for (int i = 0; i < dane; i++)
-                 plik >> arrayrandom[i];
+                 plik >> array[i];
          }
 
          start = clock();
 
-         heapSort(arrayrandom, dane);
+         heapSort(array, dane);
 
 
 
@@ -203,7 +201,7 @@ int main()
          else
          {
              for (int i = 0; i < dane; i++)
-                 plik >> arrayrandom[i];
+                 plik >> array[i];
          }
          time_taken = double(end - start) / double(CLOCKS_PER_SEC);
          std::cout << "Sortowanie przez kopcowanie czas dla liczb losowych: " << std::fixed;
@@ -212,7 +210,7 @@ int main()
 
      start = clock();
 
-     sort_babelki(arrayrandom, dane);
+     sort_babelki(array, dane);
 
      end = clock();
 
@@ -223,19 +221,15 @@ int main()
      std::cout << time_taken << std::setprecision(5);
      std::cout << " s " << std::endl;
     
-        for (int i = 0; i < dane; i++)
-        {
-            array1tofinal[i] = i;
-        }
         for (int i = dane - 1, j = 0; i > 0 || j < dane; i--, j++)
         {
-            arrayfinalto1[j] = i;
+            array[j] = i;
         }
 
 
      start = clock();
 
-     quickSort(arrayfinalto1, 0, dane-1);
+     quickSort(array, 0, dane-1);
 
 
 
@@ -248,11 +242,11 @@ int main()
      std::cout << " s " << std::endl;
      for (int i = dane - 1, j = 0; i > 0 || j < dane; i--, j++)
      {
-         arrayfinalto1[j] = i;
+         array[j] = i;
      }
      start = clock();
 
-     sortowanie_przez_scalanie(arrayfinalto1, 0, dane-1);
+     sortowanie_przez_scalanie(array, 0, dane-1);
 
 
 
@@ -265,18 +259,18 @@ int main()
      std::cout << " s " << std::endl;
      for (int i = dane - 1, j = 0; i > 0 || j < dane; i--, j++)
      {
-         arrayfinalto1[j] = i;
+         array[j] = i;
      }
      start = clock();
 
-     heapSort(array1tofinal, dane);
+     heapSort(array, dane);
 
 
 
      end = clock();
      for (int i = dane - 1, j = 0; i > 0 || j < dane; i--, j++)
      {
-         arrayfinalto1[j] = i;
+         array[j] = i;
      }
 
      time_taken = double(end - start) / double(CLOCKS_PER_SEC);
@@ -286,7 +280,7 @@ int main()
 
      start = clock();
 
-     sort_babelki(arrayfinalto1, dane);
+     sort_babelki(array, dane);
 
      end = clock();
 
@@ -299,12 +293,12 @@ int main()
 //liczb posortowanyc
      for (int i = 0; i < dane; i++)
      {
-         array1tofinal[i] = i;
+         array[i] = i;
      }
 
      start = clock();
 
-     quickSort(array1tofinal, 0, dane - 1);
+     quickSort(array, 0, dane - 1);
 
 
 
@@ -316,24 +310,25 @@ int main()
      std::cout << " s " << std::endl;
      for (int i = 0; i < dane; i++)
      {
-         array1tofinal[i] = i;
+         array[i] = i;
      }
      start = clock();
 
-     sortowanie_przez_scalanie(array1tofinal, 0, dane - 1);
+     sortowanie_przez_scalanie(array, 0, dane - 1);
 
      end = clock();
      time_taken = double(end - start) / double(CLOCKS_PER_SEC);
      std::cout << "Sortowanie przez scalanie czas dla liczb posortowanych: " << std::fixed;
      std::cout << time_taken << std::setprecision(5);
      std::cout << " s " << std::endl;
-        for (int i = 0; i < dane; i++)
+
+     for (int i = 0; i < dane; i++)
      {
-         array1tofinal[i] = i;
+         array[i] = i;
      }
      start = clock();
 
-     heapSort(array1tofinal, dane);
+     heapSort(array, dane);
 
      end = clock();
      time_taken = double(end - start) / double(CLOCKS_PER_SEC);
@@ -342,11 +337,11 @@ int main()
      std::cout << " sec " << std::endl;
     for (int i = 0; i < dane; i++)
      {
-         array1tofinal[i] = i;
+        array[i] = i;
      }
      start = clock();
 
-     sort_babelki(array1tofinal, dane);
+     sort_babelki(array, dane);
 
      end = clock();
 
