@@ -130,11 +130,10 @@ void sortowanie_przez_scalanie(int A[], int left, int right)
 }
 int main()
 {
-     int dane = 50000;
+     int dane = 350000;
     int arrayrandom[500000];
     int array1tofinal[500000];
     int arrayfinalto1[500000];
-    int test[8]={0,1,40,20,545,20,1,2};
 
     std::ifstream plik;
     plik.open("losoweliczby.txt", std::ios::in);
@@ -175,8 +174,6 @@ int main()
 
          sortowanie_przez_scalanie(arrayrandom, 0, dane-1);
 
-
-
          end = clock();
          time_taken = double(end - start) / double(CLOCKS_PER_SEC);
          std::cout << "Sortowanie przez scalanie czas dla liczb losowych: " << std::fixed;
@@ -210,46 +207,32 @@ int main()
          }
          time_taken = double(end - start) / double(CLOCKS_PER_SEC);
          std::cout << "Sortowanie przez kopcowanie czas dla liczb losowych: " << std::fixed;
-         std::cout << time_taken << std::setprecision(5); ;
+         std::cout << time_taken << std::setprecision(5); 
          std::cout << " sec " << std::endl;
-         //if (!plik.good())
-         //{
-         //    losuj();
-         //}
-         //else
-         //{
-         //    for (int i = 0; i < dane; i++)
-         //        plik >> arrayrandom[i];
-         //}
-         for (int i = 0; i < dane; i++)
-         {
-             std::cout << arrayrandom[i]<<"\t";
-         }
+
      start = clock();
 
      sort_babelki(arrayrandom, dane);
 
      end = clock();
 
-     //for (int i = 0; i < dane; i++)
-     //{
-     //    std::cout << arrayrandom[i] << "\t";
-     //}
+
 
      time_taken = double(end - start) / double(CLOCKS_PER_SEC);
      std::cout << "Bąbelkowe czas dla liczb losowych : " << std::fixed;
-     std::cout << time_taken << std::setprecision(5); ;
+     std::cout << time_taken << std::setprecision(5);
      std::cout << " s " << std::endl;
     
         for (int i = 0; i < dane; i++)
         {
             array1tofinal[i] = i;
         }
-    for (int i = dane - 1,j = 0; i > 0; i--, j++)
-    {
-        arrayfinalto1[j] = i;
-    }
-    std::cout << " a to ciekawostka " << std::endl;
+        for (int i = dane - 1, j = 0; i > 0 || j < dane; i--, j++)
+        {
+            arrayfinalto1[j] = i;
+        }
+
+
      start = clock();
 
      quickSort(arrayfinalto1, 0, dane-1);
@@ -258,29 +241,32 @@ int main()
 
      end = clock();
 
+
       time_taken = double(end - start) / double(CLOCKS_PER_SEC);
      std::cout << "Sortowanie Lomuto czas dla odwrotnie posortowanych: " << std::fixed;
-     std::cout << time_taken << std::setprecision(5); ;
+     std::cout << time_taken << std::setprecision(5);
      std::cout << " s " << std::endl;
-     for (int i = dane - 1, j = 0; i > 0; i--, j++)
+     for (int i = dane - 1, j = 0; i > 0 || j < dane; i--, j++)
      {
          arrayfinalto1[j] = i;
      }
      start = clock();
 
-     sortowanie_przez_scalanie(array1tofinal, 0, dane-1);
+     sortowanie_przez_scalanie(arrayfinalto1, 0, dane-1);
 
 
 
      end = clock();
-     for (int i = dane - 1, j = 0; i > 0; i--, j++)
+
+    
+     time_taken = double(end - start) / double(CLOCKS_PER_SEC);
+     std::cout << "Sortowanie przez scalanie czas dla odwrotnie posortowanych: " << std::fixed;
+     std::cout << time_taken << std::setprecision(5);
+     std::cout << " s " << std::endl;
+     for (int i = dane - 1, j = 0; i > 0 || j < dane; i--, j++)
      {
          arrayfinalto1[j] = i;
      }
-     time_taken = double(end - start) / double(CLOCKS_PER_SEC);
-     std::cout << "Sortowanie przez scalanie czas dla odwrotnie posortowanych: " << std::fixed;
-     std::cout << time_taken << std::setprecision(5); ;
-     std::cout << " s " << std::endl;
      start = clock();
 
      heapSort(array1tofinal, dane);
@@ -288,19 +274,19 @@ int main()
 
 
      end = clock();
-     for (int i = dane - 1, j = 0; i > 0; i--, j++)
+     for (int i = dane - 1, j = 0; i > 0 || j < dane; i--, j++)
      {
          arrayfinalto1[j] = i;
      }
 
      time_taken = double(end - start) / double(CLOCKS_PER_SEC);
      std::cout << "Sortowanie przez kopcowanie czas dla odwrotnie posortowanych: " << std::fixed;
-     std::cout << time_taken << std::setprecision(5); ;
+     std::cout << time_taken << std::setprecision(5);
      std::cout << " sec " << std::endl;
 
      start = clock();
 
-     sort_babelki(array1tofinal, dane);
+     sort_babelki(arrayfinalto1, dane);
 
      end = clock();
 
@@ -308,17 +294,14 @@ int main()
 
      time_taken = double(end - start) / double(CLOCKS_PER_SEC);
      std::cout << "Bąbelkowe czas dla odwrotnie posortowanych : " << std::fixed;
-     std::cout << time_taken << std::setprecision(5); ;
-     std::cout << " s " << std::endl;
-
+     std::cout << time_taken << std::setprecision(5);
+     std::cout << " s " << std::endl; 
+//liczb posortowanyc
      for (int i = 0; i < dane; i++)
      {
          array1tofinal[i] = i;
      }
-     for (int i = 0; i < dane; i++)
-{
-    std::cout << array1tofinal[i] << "\t";
-}
+
      start = clock();
 
      quickSort(array1tofinal, 0, dane - 1);
@@ -326,13 +309,10 @@ int main()
 
 
      end = clock();
-     for (int i = 0; i < dane; i++)
-     {
-         std::cout << array1tofinal[i] << "\t";
-     }
+
      time_taken = double(end - start) / double(CLOCKS_PER_SEC);
      std::cout << "Sortowanie Lomuto czas dla liczb posortowanych: " << std::fixed;
-     std::cout << time_taken << std::setprecision(5); ;
+     std::cout << time_taken << std::setprecision(5);
      std::cout << " s " << std::endl;
      for (int i = 0; i < dane; i++)
      {
@@ -342,14 +322,12 @@ int main()
 
      sortowanie_przez_scalanie(array1tofinal, 0, dane - 1);
 
-
-
      end = clock();
      time_taken = double(end - start) / double(CLOCKS_PER_SEC);
      std::cout << "Sortowanie przez scalanie czas dla liczb posortowanych: " << std::fixed;
-     std::cout << time_taken << std::setprecision(5); ;
+     std::cout << time_taken << std::setprecision(5);
      std::cout << " s " << std::endl;
-     for (int i = 0; i < dane; i++)
+
      {
          array1tofinal[i] = i;
      }
@@ -357,14 +335,12 @@ int main()
 
      heapSort(array1tofinal, dane);
 
-
-
      end = clock();
      time_taken = double(end - start) / double(CLOCKS_PER_SEC);
      std::cout << "Sortowanie przez kopcowanie czas dla liczb posortowanych: " << std::fixed;
-     std::cout << time_taken << std::setprecision(5); ;
+     std::cout << time_taken << std::setprecision(5);
      std::cout << " sec " << std::endl;
-     for (int i = 0; i < dane; i++)
+    for (int i = 0; i < dane; i++)
      {
          array1tofinal[i] = i;
      }
@@ -374,11 +350,9 @@ int main()
 
      end = clock();
 
-
-
      time_taken = double(end - start) / double(CLOCKS_PER_SEC);
      std::cout << "Bąbelkowe czas dla liczb posortowanych : " << std::fixed;
-     std::cout << time_taken << std::setprecision(5); ;
+     std::cout << time_taken << std::setprecision(5);
      std::cout << " s " << std::endl;
      return 0;
 }
